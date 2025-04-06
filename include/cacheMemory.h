@@ -33,7 +33,7 @@ class CacheMemory : public MemoryInterface<INTERFACE_SIZE> {
   static const int STATE_CACHE_FIRST_LOAD = ((LINE_SIZE / INTERFACE_SIZE) + 2);
   static const int STATE_CACHE_LAST_LOAD  = 2;
   static const int LOG_INTERFACE_SIZE     = log2const<INTERFACE_SIZE>::value;
-  int key			   = 0;
+  int key			   = 5;
 
 public:
   
@@ -199,8 +199,8 @@ public:
         {
         //printf("Address: %x | set: %x | place: %x |\n", (unsigned int)addr, placeStore, setStore);
        // printf("SecretBit at location set %x, place %x is %x\n", placeStore, setStore, secretBit[placeStore][setStore]);
-        	placeStore=(placeStore * key)%SET_SIZE;					// encrypt the location and save
-        	setStore = (setStore * key)%ASSOCIATIVITY;
+        	placeStore=(placeStore * key + b)%SET_SIZE;					// encrypt the location and save
+        	setStore = (setStore * key + b)%ASSOCIATIVITY;
           cacheMemory[placeStore][setStore] = valStore;				
           age[placeStore][setStore]         = cycle;
           dataValid[placeStore][setStore]   = 1;
