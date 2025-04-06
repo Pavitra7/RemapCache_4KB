@@ -676,7 +676,7 @@ ac_int<LOG_SET_SIZE, false> place_old = addr_old.slc<LOG_SET_SIZE>(LOG_LINE_SIZE
    
     return 0;
 
-            placeStore = place;
+            placeStore = place_old;
             setStore   = setMiss;
             valStore   = newVal;
 
