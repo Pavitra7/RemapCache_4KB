@@ -1,17 +1,5 @@
-Comet System on Chip (SoC)
+RemapShield
 =========================
-
-Memory Map
-----------
-
-+---------------+----------------+------------------+----------------+
-| Base          | Length         | Attributes       | Description    |
-+===============+================+==================+================+
-| 0x0000_0010   | 0x0000_0300    |                  | CLINT          |
-+---------------+----------------+------------------+----------------+
-| 0x0000_0310   | 0x0000_0480    |                  | UART           |
-+---------------+----------------+------------------+----------------+
-| 0x0003_0000   | ND             | EX, NI, C        | ROM + DRAM     |
-+---------------+----------------+------------------+----------------+
-
-*(EX: Executable, NI: Non-idempotent, C: Cached, ND: Not defined)*
+This is the modified Comet Cache used for selective randomisation for mitigating conflict based Cache Side Channel Attacks.
+The build and execute process is same as for the Comet core processor
+The cache structure along with search and replacement policy is updated.
