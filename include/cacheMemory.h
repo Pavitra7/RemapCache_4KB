@@ -645,6 +645,37 @@ if (hit1)
               valDirty = 1;
             }
 
+     // Step 1: Compute modular inverse of a mod m using Extended Euclidean Algorithm
+    int m0 = SET_SIZE;
+    int x0 = 0, x1 = 1;
+    int q, t;
+
+    int a_copy = a;
+    int m_copy = m;
+
+    while (m_copy > 1) {
+        q = a_copy / m_copy;
+
+        t = m_copy;
+        m_copy = a_copy % m_copy;
+        a_copy = t;
+
+        t = x0;
+        x0 = x1 - q * x0;
+        x1 = t;
+    }
+
+    if (x1 < 0)
+        x1 += m0;
+
+    int a_inv = x1;
+
+    // Step 2: Reverse the hash: x = ((h - b) * a_inv) % m
+    ac_int<32, false> addr_old = (a_inv * ((h - b + m) % m)) % m;
+ac_int<LOG_SET_SIZE, false> place_old = addr_old.slc<LOG_SET_SIZE>(LOG_LINE_SIZE);
+   
+    return 0;
+
             placeStore = place;
             setStore   = setMiss;
             valStore   = newVal;
